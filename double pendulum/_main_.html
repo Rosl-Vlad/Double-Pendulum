@@ -1,0 +1,192 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles/dark_theme.css" />
+    <link rel="stylesheet" type="text/css" href="styles/material-appi.css" />
+    <link rel="stylesheet" type="text/css" href="styles/mat.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/cursor.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js' type='text/javascript'></script>
+</head>
+
+<body>
+<nav class="black z-depth-3 animated" role="navigation" style="position: relative;">
+    <div class="nav-wrapper container flex">
+        <ul id="nav-menu" class="right hide-on-med-and-down">
+            <li><a class="white-text" href="../Fedor/index.html">Тропин Федор</a></li>
+            <li><a class="white-text" href="./index.html">Рословец Владислав</a></li>
+            </ul>
+    </div>
+</nav>
+<div class="main_body">
+    <img src="img/img_top.jpg" class="article-full-img animated">
+    <div class="container article-color" style="max-width: 850px">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 itemprop="name" class="animated">Двойной маятник</h4>
+                        <br>
+                        <label class="animated">Приблизительное время чтения статьи: 3 минуты</label>
+                        <div itemprop="articleBody" class="animated article-body">
+                            Двойным маятником называют систему с двумя степенями свободы, 
+                            которая получается в результате соединения двух маятников посредством связей, 
+                            в нашем случае твердых. Данная система интересна различными опытами. 
+                            В частности, малые колебания двойных маятников в окрестности их положения устойчивого 
+                            равновесия дают наглядное представление важных оптических и акустических явлений: 
+                            интерференции и биения. А при увеличении энергии характер колебаний маятников принципиально меняется - колебания становятся хаотическими. 
+                        </div>
+                        <div class="all">
+                          <form id='set_variables_form' style="float: left">
+                            <div class="inputDiv">
+                              <div class="mass1"></div>
+                                <h><font size="3" color="white" face="Arial">mass1:</font><h>
+                                <input type="range" value="20" min="1" max="50" id="mass1">
+                              </div>
+                            <div class="inputDiv">
+                              <div class="mass2"></div>
+                                <h><font size="3" color="white" face="Arial">mass2:</font><h>
+                                <input type="range" value="20" min="1" max="50" id="mass2">
+                            </div>
+                            <div class="inputDiv">
+                              <div class="angle1"></div>
+                                <h><font size="3" color="white" face="Arial">angle1˚:</font><h>
+                                <input type="range" value="0" min="1" max="90" id="angle1">
+                            </div>
+                            <div class="inputDiv">
+                              <div class="angle2"></div>
+                                <h><font size="3" color="white" face="Arial">angle2˚:</font><h>
+                                <input type="range" value="65" min="1" max="90" id="angle2">
+                            </div>
+                            <div class="inputDiv">
+                              <div class="gravity"></div>
+                                <h><font size="3" color="white" face="Arial">gravity:</font><h>
+                                <input type="range" value="9.8" min="0.2" max="20" step="0.2" id="gravity">
+                                <input type='submit' value='Start' id = "pendulum1">
+                            </div>
+                          </form>
+                          <form id='set_variables'>
+                            <div class="inputDiv1">
+                              <div class="mass11"></div>
+                                <h><font size="3" color="white" face="Arial">mass1:</font><h>
+                                <input type="range" value="20" min="1" max="50" id="mass11">
+                              </div>
+                            <div class="inputDiv1">
+                              <div class="mass21"></div>
+                                <h><font size="3" color="white" face="Arial">mass2:</font><h>
+                                <input type="range" value="20" min="1" max="50" id="mass21">
+                            </div>
+                            <div class="inputDiv1">
+                              <div class="angle11"></div>
+                                <h><font size="3" color="white" face="Arial">angle1˚:</font><h>
+                                <input type="range" value="0" min="1" max="90" id="angle11">
+                            </div>
+                            <div class="inputDiv1">
+                              <div class="angle21"></div>
+                                <h><font size="3" color="white" face="Arial">angle2˚:</font><h>
+                                <input type="range" value="65" min="1" max="90" id="angle21">
+                            </div>
+                            <div class="inputDiv1">
+                              <div class="gravity1"></div>
+                                <h><font size="3" color="white" face="Arial">gravity:</font><h>
+                                <input type="range" value="9.8" min="0.2" max="20" step="0.2" id="gravity1">
+                                <input type='submit' value='Start' id = "pendulum2">
+                            </div>
+                          </form>
+                        </div>
+                        <canvas class='phys-canvas' height='700' id='myCanvas' width='700'></canvas>
+                        <div>  
+                            <br>        
+                            <br>                            
+                            Введем обозначения: 
+                            <p> \( m_1 = \) масса первого шарика </p>
+                            <p> \( m_2 = \) масса второго шарика </p>
+                            <p> \( x_1 = \) горизонтальная координата шарика с массой \(  m_1 \) </p>
+                            <p> \( x_2 = \) горизонтальная координата шарика с массой \(  m_2 \) </p>
+                            <p> \( y_1 = \) вертикальная координата шарика \(  m_1 \) </p>
+                            <p> \( y_2 = \) вертикальная координата шарика \(  m_2 \) </p>
+                            <p> \( L_1 = \) длина крепления первого шарика </p> 
+                            <p> \( L_2 = \) длина крепления второго шарика </p>
+                            <p> \( \theta_1 = \) угол первого маятника </p> 
+                            <p> \( \theta_2 = \) угол второго маятника </p> 
+                            <p> \( T = \) кинетическая энергия маятника </p>
+                            <p> \( V = \) потенциальная энергия маятника </p> 
+                            <p> \( \mu = 1 + \frac{m_1}{m_2} \) </p>
+                            <br>
+                            Для построения математической модели двойного маятника понадобится: 
+                            тригонометрия, первая производная, вторая производная и школьная физика.
+                            <br>
+                            <img src="img/Double-Pendulum.png" class="wiki-panel img">
+                            <br>
+
+                            Координаты, скорость и ускорения можем найти по формулам: 
+                            <br>
+                            \[   x_{1} = L_{1}sin\theta_{1} \qquad 
+                                x_{1}^{'} = \theta_{1}^{'}L_{1}cos\theta_{1} \qquad 
+                                x_{1}^{''} = -\theta_{1}^{''}L_{1}sin\theta_{1}  + 
+                                    \theta_{1}^{''}L_{1}cos\theta_{1} \]
+                            <br>
+                            \[  y_{1} = -L_{1}cos\theta_{1} \qquad 
+                               y_{1}^{'} = \theta_{1}^{'}L_{1}sin\theta_{1} \qquad 
+                               y_{1}^{''} = \theta_{1}^{''}L_{1}cos\theta_{1}  + 
+                                    \theta_{1}^{''}L_{1}sin\theta_{1} \]
+                            <br>
+                            \[  x_{2} = x_1 + L_{2}sin\theta_{2} \qquad 
+                               x_{2}^{'} = x' + \theta_{2}^{'}L_{2}cos\theta_{2} \qquad 
+                               x_{2}^{''} = x_{1}^{''} - \theta_{2}^{''}L_{2}sin\theta_{2}  + 
+                                    \theta_{1}^{''}L_{1}cos\theta_{1} \]
+                            <br>
+                            \[  y_{2} = y2 - L_{2}cos\theta_{2} \qquad 
+                               y_{2}^{'} = y' + \theta_{2}^{'}L_{2}sin\theta_{2} \qquad 
+                               y_{2}^{''} = y_{1}^{''} + \theta_{2}^{''}L_{2}cos\theta_{2}  + 
+                                  \theta_{1}^{''}L_{1}sin\theta_{1} \]
+                            <br>
+                            <br>
+    
+                            Кинетическая и потенциальная энергия выражается следующим образом:
+                            <br>
+                            \[  T = \frac{m_1(\dot{x_1^2} + \dot{y_1^2})}{2}+\frac{m_1(\dot{x_2^2} + \dot{y_2^2})}{2} \]
+                            \[  V= m_1y_1g +m_2y_2g \]
+                            <br>
+                            Используя Лагранжиан получаем: 
+                            <br>
+                            \[  L= T_1+T_2 - V_1 - V_2 = \frac{m_1(\dot{x_1^2} + \dot{y_1^2})}{2}+\frac{m_1(\dot{x_2^2} + 
+                                                \dot{y_2^2})}{2} - m_1y_1g -m_2y_2g \]
+                            <br>
+                            <br>
+                            
+                            Уравнение Лагранжиан для \( \theta_{1} \) и \( \theta_{2} \):
+                            <br>  
+                            \[  \frac{d}{dt}(\frac{\partial
+                                L}{\partial\theta_{i}^{'}}) - \frac{\partial L}{\partial \theta_{i}} = 0 \]
+                            <br>
+                            <br>
+                            Опустив детали вычисления мы получаем следующие уравнения, описывающие поведение двойного маятника: 
+                            <br>
+                            \[  \ddot{\theta_{1}}= \frac{g(sin\theta_{2}cos(\theta_{1} - \theta_{2}) - \mu sin\theta_{1}) - 
+                                                        (L_2 \dot{\theta_{2}}^2 + L_1 \dot{\theta_{1}}^2cos(\theta_{1} - 
+                                                        \theta_{2}))sin(\theta_{1} -\theta_{2})}{L_1(\mu-cos^2(\theta_{1} 
+                                                        -\theta_{2}))} \]
+                            <br>
+                            \[\ddot{\theta_{2}}= \frac{\mu g(sin\theta_{1}cos(\theta_{1} - \theta_{2}) - sin\theta_{1}) +(\mu L_1 \dot{\theta_{1}}^2 + L_2 \dot{\theta_{2}}^2cos(\theta_{1} - \theta_{2}))sin(\theta_{1} -\theta_{2})}{L_2(\mu-cos^2(\theta_{1} -\theta_{2}))}\]
+                            <br>
+                            Спасибо за внимание.
+                            <br>
+                            Проект выполнил: студент 2 курса 176 группы ПМИ,
+                            <br><span style="margin-left: 160px;">Рословец Владислав</span>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="grey-text" style="font-size: 1.2rem;">
+                            <div class="row">
+                                <div class="animated col s6 m4">21 Апреля 2019</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/pendulum.js"> </script>
+<script src="js/script.js"></script>
+</div>
+</body>
